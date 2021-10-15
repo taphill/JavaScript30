@@ -47,6 +47,7 @@
     </div>
   </div>
 
+  <!-- <audio data-key="65" src="sounds/clap.wav"></audio> -->
   <audio data-key="65" src="sounds/clap.wav"></audio>
   <audio data-key="83" src="sounds/hihat.wav"></audio>
   <audio data-key="68" src="sounds/kick.wav"></audio>
@@ -58,7 +59,26 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  window.addEventListener('keydown', (event) => {
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${event.keyCode}"]`);
 
+    if(!audio) return; // Break out of the function if audio returns null
+
+    console.log(key)
+    key.classList.add('playing')
+    audio.currentTime = 0; // Reset to the waveform to the start so you can play rapidly
+    audio.play();
+  });
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
+  function removeTransition(event) {
+    if (event.propertyName !== 'transform') return;
+
+    this.classList.remove('playing');
+  }
 </script>
 
 
