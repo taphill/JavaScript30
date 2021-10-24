@@ -18,28 +18,57 @@
     }
 
     // Regular
+    console.log('Hello')
 
     // Interpolated
+    let name = 'Taylor'
+    console.log(`Hello ${name}`)
 
     // Styled
+    console.log('%c Some styled text', 'font-size:20px')
 
     // warning!
+    console.warn('This is a warning')
 
     // Error :|
+    console.error('This is an error')
 
     // Info
+    console.info('Some helpful info')
 
     // Testing
+    console.assert(1 === 2, 'That is not right')
 
     // clearing
+    console.clear()
 
     // Viewing DOM Elements
+    // console.log(body)
+    // console.dir(body) // see all the different properties and methods for an element
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`)
+      console.log(`This is ${dog.name}`)
+      console.log(`${dog.name} is ${dog.age} years old`)
+      console.log(`${dog.name} is ${dog.age * 7} in dog years`)
+      console.groupEnd(`${dog.name}`)
+    })
 
     // counting
+    console.count('Taylor')
+    console.count('Taylor')
+    console.count('Taylor')
+    console.count('Taylor')
 
     // timing
+    console.time('fetching data...')
+    fetch('https://api.github.com/users/taphill')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data...')
+        console.log(data)
+      })
 
   </script>
 </body>
